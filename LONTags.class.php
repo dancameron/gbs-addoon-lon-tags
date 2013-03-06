@@ -58,6 +58,7 @@ class Group_Buying_LON extends Group_Buying_Controller {
 			$account = Group_Buying_Account::get_instance();
 			$address = $account->get_address();
 			?>
+				<script type="text/javascript">console.log('lon registration')</script>
 				<iframe src="https://www.lontrk.com/confirm?type=registration&aid=<?php echo self::$key ?>&ref=<?php echo get_current_user_id() ?>&market=<?php echo $address['city'] ?>" scrolling="no" frameborder="0" width="1" height="1"></iframe>
 
 			<?php
@@ -80,6 +81,7 @@ class Group_Buying_LON extends Group_Buying_Controller {
 			}
 			$status = ( $pending ) ? 'pending' : 'confirmed' ;
 			?>
+				<script type="text/javascript">console.log('lon confirmation')</script>
 				<iframe_src="https://lontrk.com/confirm?type=sale&aid=<?php echo self::$key ?>&ref=<?php echo $purchase->get_id() ?>&qty=<?php count( $purchase->get_products() ) ?>&price=<?php count( $purchase->get_total() ) ?>&currency=<?php echo self::$cc ?>&item_id=<?php echo implode( ', ', $item_ids ) ?>&item_name=<?php echo implode( ', ', $item_names ) ?>&market=<?php echo $address['city'] ?>&status=<?php echo $status ?>" scrolling="no" frameborder="no" width="1" height="1"></frame>
 
 
