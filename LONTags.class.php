@@ -37,7 +37,7 @@ class Group_Buying_LON extends Group_Buying_Controller {
 		self::$key = get_option( self::KEY );
 		self::$cc = get_option( self::CC, 'US' );
 
-		add_filter( 'footer', array( get_class(), 'tracker_code' ) );
+		add_filter( 'wp_footer', array( get_class(), 'tracker_code' ) );
 
 		// Filter the registration redirect
 		add_filter( 'gb_registration_redirect', array( get_class(), 'registration_redirect' ) );
