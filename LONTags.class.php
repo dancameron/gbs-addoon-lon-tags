@@ -82,7 +82,7 @@ class Group_Buying_LON extends Group_Buying_Controller {
 			$status = ( $pending ) ? 'pending' : 'confirmed' ;
 			?>
 				<script type="text/javascript">console.log('lon confirmation')</script>
-				<iframe_src="https://lontrk.com/confirm?type=sale&aid=<?php echo self::$key ?>&ref=<?php echo $purchase->get_id() ?>&qty=<?php count( $purchase->get_products() ) ?>&price=<?php count( $purchase->get_total() ) ?>&currency=<?php echo self::$cc ?>&item_id=<?php echo implode( ', ', $item_ids ) ?>&item_name=<?php echo implode( ', ', $item_names ) ?>&market=<?php echo $address['city'] ?>&status=<?php echo $status ?>" scrolling="no" frameborder="no" width="1" height="1"></frame>
+				<iframe_src="https://lontrk.com/confirm?type=sale&aid=<?php echo self::$key ?>&ref=<?php echo $purchase->get_id() ?>&qty=<?php echo count( $item_ids ) ?>&price=<?php echo $purchase->get_total() ?>&currency=<?php echo self::$cc ?>&item_id=<?php echo implode( ', ', $item_ids ) ?>&item_name=<?php echo implode( ', ', $item_names ) ?>&market=<?php echo $address['city'] ?>&status=<?php echo $status ?>" scrolling="no" frameborder="no" width="1" height="1"></frame>
 
 
 			<?php
