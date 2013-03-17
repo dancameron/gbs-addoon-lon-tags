@@ -11,10 +11,10 @@ Text Domain: group-buying
 */
 
 // Load after all other plugins since we need to be compatible with groupbuyingsite
-add_action('after_setup_theme', 'gb_load_advanced_lon_tags');
+add_action( 'after_setup_theme', 'gb_load_advanced_lon_tags' );
 function gb_load_advanced_lon_tags() {
-	if (class_exists('Group_Buying_Controller') ) {
-		require_once('LONTags.class.php');
+	if ( class_exists( 'Group_Buying_Controller' ) ) {
+		require_once 'LONTags.class.php';
 		Group_Buying_LON_Addon::init();
 	}
 }
