@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Group Buying Addon - Local Offer Network Tags
-Version: 1.1
+Version: 1.1.1
 Plugin URI: http://groupbuyingsite.com/marketplace
 Description: Adds transactional and registration tags
 Author: Sprout Venture
