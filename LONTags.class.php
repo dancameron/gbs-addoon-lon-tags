@@ -23,9 +23,7 @@ class Group_Buying_LON_Addon extends Group_Buying_Controller {
 		);
 		return $addons;
 	}
-
 }
-
 
 class Group_Buying_LON extends Group_Buying_Controller {
 
@@ -57,11 +55,9 @@ class Group_Buying_LON extends Group_Buying_Controller {
 		 */
 		if ( isset( $_REQUEST['welcome'] ) && $_REQUEST['welcome'] ) {
 			$account = Group_Buying_Account::get_instance();
-			$address = $account->get_address();
-?>
+			$address = $account->get_address(); ?>
 				<script type="text/javascript">console.log('lon registration')</script>
-				<iframe src="https://www.lontrk.com/confirm?type=registration&aid=<?php echo self::$key ?>&ref=<?php echo get_current_user_id() ?>&market=<?php echo $address['city'] ?>" scrolling="no" frameborder="0" width="1" height="1"></iframe>
-
+				<iframe src="https://www.lontrk.com/confirm?type=registration&aid=<?php echo self::$key ?>&ref=<?php echo get_current_user_id() ?>&market=<?php echo urlencode( $address['city'] ) ?>" scrolling="no" frameborder="0" width="1" height="1"></iframe>
 			<?php
 		}
 		if ( get_query_var( Group_Buying_Checkouts::CHECKOUT_QUERY_VAR ) && gb_get_current_checkout_page() == 'confirmation' ) {
@@ -81,12 +77,13 @@ class Group_Buying_LON extends Group_Buying_Controller {
 				}
 			}
 			$status = ( $pending ) ? 'pending' : 'confirmed' ;
-?>
+			$url = 'https://lontrk.com/confirm?type=sale&aid='.self::$key.'&ref='.$purchase->get_id().'&qty='.count( $item_ids ).'&price='.$purchase->get_total().'&currency='.self::$cc.'&item_id='.implode( ',', $item_ids ).'&item_name='.implode( ',', $item_names ).'&market='.$address['city'].'&status='.$status; ?>
+		
+
 				<script type="text/javascript">console.log('lon confirmation')</script>
-				<iframe_src="https://lontrk.com/confirm?type=sale&aid=<?php echo self::$key ?>&ref=<?php echo $purchase->get_id() ?>&qty=<?php echo count( $item_ids ) ?>&price=<?php echo $purchase->get_total() ?>&currency=<?php echo self::$cc ?>&item_id=<?php echo implode( ', ', $item_ids ) ?>&item_name=<?php echo implode( ', ', $item_names ) ?>&market=<?php echo $address['city'] ?>&status=<?php echo $status ?>" scrolling="no" frameborder="no" width="1" height="1"></frame>
-
-
-			<?php
+				<iframe src="<?php echo urlencode( $url ) ?>" scrolling="no" frameborder="no" width="1" height="1"></frame>
+				
+				<?php
 		}
 	}
 
