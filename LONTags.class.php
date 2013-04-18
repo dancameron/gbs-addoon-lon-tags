@@ -77,11 +77,11 @@ class Group_Buying_LON extends Group_Buying_Controller {
 				}
 			}
 			$status = ( $pending ) ? 'pending' : 'confirmed' ;
-			$url = 'https://lontrk.com/confirm?type=sale&aid='.self::$key.'&ref='.$purchase->get_id().'&qty='.count( $item_ids ).'&price='.$purchase->get_total().'&currency='.self::$cc.'&item_id='.implode( ',', $item_ids ).'&item_name='.implode( ',', $item_names ).'&market='.$address['city'].'&status='.$status; ?>
+			$url = 'https://lontrk.com/confirm?type=sale&aid='.self::$key.'&ref='.$purchase->get_id().'&qty='.count( $item_ids ).'&price='.$purchase->get_total().'&currency='.self::$cc.'&item_id='.implode( ',', $item_ids ).'&item_name='.urlencode(implode( ',', $item_names )).'&market='.urlencode($address['city']).'&status='.$status; ?>
 		
 
 				<script type="text/javascript">console.log('lon confirmation')</script>
-				<iframe src="<?php echo urlencode( $url ) ?>" scrolling="no" frameborder="no" width="1" height="1"></frame>
+				<iframe src="<?php echo $url ?>" scrolling="no" frameborder="no" width="1" height="1"></iframe>
 				
 				<?php
 		}
